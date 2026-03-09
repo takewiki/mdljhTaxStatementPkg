@@ -83,16 +83,17 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
         #表头存在数据
           #表体存在数据，进行相应的数据处理
           #获取完整的模板文件
-          templateFile = paste0(outputDir, "/报表模板.xlsx")
+        # 模板文件路径（使用 file.path 确保分隔符）
+        templateFile = file.path(outputDir, "报表模板.xlsx")
+        print(paste("模板文件路径:", templateFile))
 
+        # 检查模板是否存在
+        if (!file.exists(templateFile)) {
+          stop("模板文件不存在：", templateFile)
+        }
 
-          print(templateFile)
+        excel_file <- openxlsx::loadWorkbook(templateFile)
 
-          tsui::pop_notice("templateFile")
-
-          tsui::pop_notice(templateFile)
-
-          excel_file <- openxlsx::loadWorkbook(templateFile)
           #写入表头数据
           for ( i in 1:ncount_meta_head) {
             #针对数据处理处理
@@ -125,16 +126,21 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
 
           #处理文件名生成EXCEL
           print(5)
-          outputFile = paste0("税务报表.xlsx")
+          # 输出文件路径（使用 file.path 修正）
+          outputFile = "税务报表.xlsx"
+          xlsx_file_name = file.path(outputDir, outputFile)   # 关键修正
+          print(paste("输出文件路径:", xlsx_file_name))
 
-          xlsx_file_name = paste0(outputDir, outputFile)
-
-          tsui::pop_notice("xlsx_file_name")
-
-          tsui::pop_notice(xlsx_file_name)
-
-
+          # 保存文件
           res = saveWorkbook(excel_file, xlsx_file_name, overwrite = TRUE)
+
+          # 验证文件是否生成
+          if (file.exists(xlsx_file_name)) {
+            print("文件生成成功")
+          } else {
+            print("文件生成失败")
+          }
+
 
 
 

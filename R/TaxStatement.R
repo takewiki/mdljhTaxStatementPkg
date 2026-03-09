@@ -9,7 +9,7 @@
 #' @examples
 #' TaxStatement_meta()
 TaxStatement_meta <- function(erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039') {
-  sql = paste0("select FName,'rds_t_Tax_Statement_sum' as FTableName,FCells from [rds_t_Tax_StatementConfiguration]  ")
+  sql = paste0("select FName,FTableName,FCells from [rds_t_Tax_StatementConfiguration]  ")
   data = tsda::sql_select2(token = erpToken,sql = sql)
   return(data)
 

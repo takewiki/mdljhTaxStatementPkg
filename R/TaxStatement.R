@@ -67,13 +67,9 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
 {
 
 
-  delete_localFiles = 0
   sql_exec =paste0("EXEC rds_proc_Tax_Statement  '",FYear,"','",FMonth,"','",FOrgNumber,"'       ")
   tsda::sql_update2(token = erpToken,sql_str =sql_exec )
 
-  print(1)
-
-      print(2)
       #进一步处理
       meta_head = TaxStatement_meta(erpToken = erpToken )
       ncount_meta_head = nrow(meta_head)
@@ -87,7 +83,7 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
         #表头存在数据
           #表体存在数据，进行相应的数据处理
           #获取完整的模板文件
-          templateFile = paste0(outputDir, "/www/TaxStatement/报表模板.xlsx")
+          templateFile = paste0(outputDir, "/报表模板.xlsx")
 
 
           print(templateFile)

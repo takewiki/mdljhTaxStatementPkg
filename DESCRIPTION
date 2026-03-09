@@ -1,7 +1,7 @@
 Package: mdljhTaxStatementPkg
 Type: Package
 Title: Pkg Package For DMS mdljhTaxStatement Module in R
-Version: 1.0.4
+Version: 1.0.6
 Author: hulilei
 Maintainer: hulilei <hulilei@takewiki.com.cn>
 Description: More about what it does (maybe more than one line)

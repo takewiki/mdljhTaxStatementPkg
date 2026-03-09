@@ -91,6 +91,11 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
 
 
           print(templateFile)
+
+          tsui::pop_notice("templateFile")
+
+          tsui::pop_notice(templateFile)
+
           excel_file <- openxlsx::loadWorkbook(templateFile)
           #写入表头数据
           for ( i in 1:ncount_meta_head) {
@@ -126,8 +131,11 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
           print(5)
           outputFile = paste0("税务报表.xlsx")
 
-          xlsx_file_name = paste0(outputDir, "/www/TaxStatement/", outputFile)
+          xlsx_file_name = paste0(outputDir, outputFile)
 
+          tsui::pop_notice("xlsx_file_name")
+
+          tsui::pop_notice(xlsx_file_name)
 
 
           res = saveWorkbook(excel_file, xlsx_file_name, overwrite = TRUE)

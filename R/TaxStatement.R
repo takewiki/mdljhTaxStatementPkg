@@ -117,8 +117,7 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
 
             openxlsx::writeData(wb = excel_file, sheet = "Sheet1", x = cellData_head,
                                 startCol = indexCol, startRow = indexRow,
-                                #colNames = FALSE,
-                                #borders = "all" ,
+
                                 headerStyle = header_style )
 
           }
@@ -128,7 +127,9 @@ TaxStatement_excel <-function (erpToken = 'C0426D23-1927-4314-8736-A74B2EF7A039'
           outputFile = paste0("税务报表.xlsx")
 
           xlsx_file_name = paste0(outputDir, "/www/TaxStatement/", outputFile)
-          print(xlsx_file_name)
+
+          tsui::pop_notice("xlsx_file_name")
+          tsui::pop_notice(xlsx_file_name)
 
           res = saveWorkbook(excel_file, xlsx_file_name, overwrite = TRUE)
 
